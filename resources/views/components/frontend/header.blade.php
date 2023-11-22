@@ -45,15 +45,37 @@
                     class="{{ Route::current()->getName() == 'index' ? 'text-vermillion' : 'text-black' }} md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500 active">Beranda</a>
             </li>
 
-            <li>
-                <a href="{{ route('complainant.complaints.create') }}"
-                    class="{{ Route::current()->getName() == 'complainant.complaints.create' ? 'text-vermillion' : 'text-black' }} md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Buat
-                    Aduan</a>
+            <li class="flex flex-col lg:block">
+                <button type="button" id="dropdownBtnLayanan"
+                    class="flex flex-row justify-center text-black transition-all duration-500 lg:items-center md:text-lg lg:text-sm hover:text-vermillion {{ in_array(Route::current()->getName(), ['complainant.complaints.create', 'complainant.documents.create' ]) ? 'text-vermillion' : '' }}">Layanan
+                    <img id="caret-dropdown" class="-rotate-90 lg:w-5"
+                        src="{{ asset('assets/icons/caret-down.svg') }}"></button>
+
+                <div class="flex-col items-center lg:gap-3 lg:items-start hidden lg:absolute lg:bg-[#E8C6B6] lg:rounded-md lg:px-3 lg:py-3"
+                    id="dropdownContentLayanan">
+                    <a href="{{ route('complainant.documents.create') }}"
+                        class="my-4 text-black transition-all duration-500 lg:my-0 md:text-lg lg:text-sm hover:text-vermillion">Pengajuan
+                        Surat</a>
+                    <a href="{{ route('complainant.complaints.create') }}"
+                        class="text-black transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Buat
+                        Aduan</a>
+                </div>
             </li>
 
-            <li>
-                <a href="{{ route('complainant.complaints.index') }}"
-                    class="{{ Route::current()->getName() == 'complainant.complaints.index' ? 'text-vermillion' : 'text-black' }} md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Riwayat</a>
+            <li class="flex flex-col lg:block">
+                <button type="button" id="dropdownBtnRiwayat"
+                    class="flex flex-row justify-center text-black transition-all duration-500 lg:items-center md:text-lg lg:text-sm hover:text-vermillion {{ in_array(Route::current()->getName(), ['complainant.complaints.index', 'complainant.documents.index' ]) ? 'text-vermillion' : '' }}">Riwayat
+                    <img id="caret-dropdown-riwayat" class="-rotate-90 lg:w-5"
+                        src="{{ asset('assets/icons/caret-down.svg') }}"></button>
+
+                <div class="flex-col items-center lg:gap-3 lg:items-start hidden lg:absolute lg:bg-[#E8C6B6] lg:rounded-md lg:px-3 lg:py-3"
+                    id="dropdownContentRiwayat">
+                    <a href="{{ route('complainant.documents.index') }}"
+                        class="my-4 text-black transition-all duration-500 lg:my-0 md:text-lg lg:text-sm hover:text-vermillion">Pengajuan
+                        Surat</a>
+                    <a href="{{ route('complainant.complaints.index') }}"
+                        class="text-black transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Aduan</a>
+                </div>
             </li>
 
             <li>
@@ -91,3 +113,41 @@
         </div>
     </nav>
 </header>
+
+@push("script")
+<script>
+    const dropdownBtnLayanan = document.getElementById("dropdownBtnLayanan");
+    const dropdownBtnRiwayat = document.getElementById("dropdownBtnRiwayat");
+    const dropdownContentLayanan = document.getElementById("dropdownContentLayanan");
+    const dropdownContentRiwayat = document.getElementById("dropdownContentRiwayat");
+    const caretDropdownLayanan = document.getElementById('caret-dropdown');
+    const caretDropdownRiwayat = document.getElementById('caret-dropdown-riwayat');
+
+    dropdownBtnLayanan.addEventListener('click', () => {
+        dropdownContentLayanan.classList.toggle('hidden');
+        dropdownContentLayanan.classList.toggle('flex');
+        caretDropdownLayanan.classList.toggle('-rotate-90');
+    });
+
+    dropdownBtnRiwayat.addEventListener('click', () => {
+        dropdownContentRiwayat.classList.toggle('hidden');
+        dropdownContentRiwayat.classList.toggle('flex');
+        caretDropdownRiwayat.classList.toggle('-rotate-90');
+    });
+
+    // Close dropdown content when clicking outside of the dropdown
+    window.addEventListener('click', (event) => {
+        if (!event.target.matches("#dropdownBtnLayanan") && !event.target.matches("#dropdownContentLayanan")) {
+            dropdownContentLayanan.classList.add('hidden');
+            dropdownContentLayanan.classList.remove('flex');
+            caretDropdownLayanan.classList.add('-rotate-90');
+        }
+
+        if (!event.target.matches("#dropdownBtnRiwayat") && !event.target.matches("#dropdownContentRiwayat")) {
+            dropdownContentRiwayat.classList.add('hidden');
+            dropdownContentRiwayat.classList.remove('flex');
+            caretDropdownRiwayat.classList.add('-rotate-90');
+        }
+    });
+</script>
+@endpush
