@@ -18,6 +18,7 @@ class Document extends Model
      */
     protected $fillable = [
         'user_id',
+        'request_number',
         'document_type',
         'status',
     ];

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Document;
+use App\Models\Complaint; // TODO: delete after index view has finish
 use Illuminate\Http\Request;
 use App\Models\DocumentRequirement;
 use App\Http\Requests\DocumentRequest;
@@ -14,9 +15,16 @@ class DocumentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $documents = Document::where('user_id', auth()->user()->id)->latest();
+
+        if ($request->has('keyword')) {
+            $documents = $documents->where('request_number', 'like', '%' . $request->keyword . '%');
+        }
+
+        $documents = $documents->paginate(5);
+        return view('pages.frontend.documents.history', compact('documents'));
     }
 
     /**
@@ -32,10 +40,13 @@ class DocumentController extends Controller
      */
     public function store(DocumentRequest $request)
     {
+        $time = time();
+        $generateRequestNumber = date("Ymd", $time) . $time;
         $document =  Document::create([
-            'user_id' =>  auth()->user()->id,
-            'document_type' => $request->document_type,
-            'status' => 'proses validasi',
+            "user_id" =>  auth()->user()->id,
+            "request_number" => $generateRequestNumber,
+            "document_type" => $request->document_type,
+            "status" => "proses validasi",
         ]);
 
         $id = $document->id;
