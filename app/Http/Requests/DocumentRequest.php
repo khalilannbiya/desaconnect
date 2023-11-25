@@ -24,7 +24,7 @@ class DocumentRequest extends FormRequest
     {
         return [
             "document_type" => "required|in:surat keterangan usaha,surat keterangan domisili",
-            "document_requirements.*" => "required|mimes:png,jpg,jpeg",
+            "document_requirements.*" => "required|mimes:png,jpg,jpeg|max:1024",
             "names.*" => "required|string"
         ];
     }
@@ -39,7 +39,8 @@ class DocumentRequest extends FormRequest
         return [
             'document_type.required' => 'Jenis surat tidak boleh kosong!',
             "document_requirements.*.required" => "File harus diisi!",
-            "document_requirements.*.mimes" => "File harus berupa gambar!"
+            "document_requirements.*.mimes" => "File harus berupa gambar!",
+            "document_requirements.*.max" => "File jangan lebih dari 1 MB!"
         ];
     }
 }

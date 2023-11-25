@@ -18,13 +18,14 @@ class DocumentController extends Controller
     public function index(Request $request)
     {
         $documents = Document::where('user_id', auth()->user()->id)->latest();
+        $isDataNotValid = Document::where('user_id', auth()->user()->id)->where('status', 'tidak valid')->exists();
 
         if ($request->has('keyword')) {
             $documents = $documents->where('request_number', 'like', '%' . $request->keyword . '%');
         }
 
         $documents = $documents->paginate(5);
-        return view('pages.frontend.documents.history', compact('documents'));
+        return view('pages.frontend.documents.history', compact('documents', 'isDataNotValid'));
     }
 
     /**
@@ -67,15 +68,15 @@ class DocumentController extends Controller
 
         Alert::toast("<strong>Data Berhasil Dikirim!</strong>", 'success')->toHtml()->timerProgressBar();
 
-        return redirect()->route('complainant.documents.create');
+        return redirect()->route('complainant.documents.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Document $document)
     {
-        //
+        return view('pages.frontend.documents.detail', compact("document"));
     }
 
     /**
@@ -89,9 +90,27 @@ class DocumentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Document $document)
     {
-        //
+        $files = $request->file('document_requirements');
+        $names = $request->input('names');
+        if ($request->hasFile('document_requirements')) {
+            foreach (array_combine($names, $files) as $name => $file) {
+                $photo = $file->storePublicly("photos", "public");
+
+                DocumentRequirement::where('document_id', $document->id)->where('name', $name)->update([
+                    "url" => $photo
+                ]);
+            }
+        }
+
+        $document->update([
+            "status" => "proses validasi"
+        ]);
+
+        Alert::toast("<strong>Data Berhasil Diubah!</strong>", 'success')->toHtml()->timerProgressBar();
+
+        return redirect()->route('complainant.documents.index');
     }
 
     /**

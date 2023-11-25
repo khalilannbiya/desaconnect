@@ -2,10 +2,10 @@
 
 @section('title')
 @guest
-<title>LaporDesa</title>
+<title>DesaConnect</title>
 @endguest
 @auth
-<title>Detail Aduan | LaporDesa</title>
+<title>Detail Aduan | DesaConnect</title>
 @endauth
 @endsection
 

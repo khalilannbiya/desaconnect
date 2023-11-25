@@ -21,10 +21,16 @@ class Document extends Model
         'request_number',
         'document_type',
         'status',
+        'response',
     ];
 
     public function documentRequirement()
     {
         return $this->hasMany(DocumentRequirement::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

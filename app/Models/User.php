@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Role;
+use App\Models\Document;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
@@ -60,5 +61,10 @@ class User extends Authenticatable
     public function complaint()
     {
         return $this->hasMany(Complaint::class);
+    }
+
+    public function document()
+    {
+        return $this->hasMany(Document::class);
     }
 }
