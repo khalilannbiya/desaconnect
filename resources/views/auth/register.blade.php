@@ -22,6 +22,12 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="nik" value="{{ __('NIK') }}" />
+                <x-input id="nik" class="block w-full mt-1" type="text" name="nik" :value="old('nik')" required
+                    autocomplete="nik" placeholder="Masukkan NIK" />
+            </div>
+
+            <div class="mt-4">
                 <x-label for="phone" value="{{ __('No. Telepon') }}" />
                 <x-input id="phone" class="block w-full mt-1" type="text" name="phone" :value="old('phone')" required
                     autofocus autocomplete="phone" placeholder="Masukkan Nomer Telepon" />
