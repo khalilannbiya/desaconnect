@@ -53,6 +53,10 @@
                 <p class="font-medium text-davys-grey">{{ $complaint->user->email }}</p>
             </div>
             <div class="mb-5 text-sm md:text-lg md:mb-7 xl:mb-4">
+                <label class="block mb-2 font-bold">NIK</label>
+                <p class="font-medium text-davys-grey">{{ $complaint->user->nik }}</p>
+            </div>
+            <div class="mb-5 text-sm md:text-lg md:mb-7 xl:mb-4">
                 <label class="block mb-2 font-bold">Alamat</label>
                 <p class="font-medium text-davys-grey">{{ $complaint->user->address }}</p>
             </div>

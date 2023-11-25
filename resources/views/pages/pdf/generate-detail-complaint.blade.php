@@ -118,6 +118,11 @@
                 <td>{{ $complaint->user->email }}</td>
             </tr>
             <tr>
+                <td class="head-column">NIK</td>
+                <td>:</td>
+                <td>{{ $complaint->user->nik }}</td>
+            </tr>
+            <tr>
                 <td class="head-column">Nomor Telepon</td>
                 <td>:</td>
                 <td>{{ $complaint->user->phone }}</td>

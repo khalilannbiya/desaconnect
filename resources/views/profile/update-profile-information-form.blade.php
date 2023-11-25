@@ -85,6 +85,13 @@
             @endif
         </div>
 
+        <!-- NIK -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="nik" value="{{ __('NIK') }}" />
+            <x-input id="nik" type="text" class="mt-2 block w-full" wire:model.defer="state.nik" autocomplete="nik" />
+            <x-input-error for="nik" class="mt-2" />
+        </div>
+
         <!-- Phone -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="phone" value="{{ __('Nomor Telpon') }}" />
