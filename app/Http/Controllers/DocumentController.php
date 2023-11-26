@@ -19,13 +19,14 @@ class DocumentController extends Controller
     {
         $documents = Document::where('user_id', auth()->user()->id)->latest();
         $isDataNotValid = Document::where('user_id', auth()->user()->id)->where('status', 'tidak valid')->exists();
+        $isLetterReadyForPickup = Document::where('user_id', auth()->user()->id)->where('status', 'siap diambil')->exists();
 
         if ($request->has('keyword')) {
             $documents = $documents->where('request_number', 'like', '%' . $request->keyword . '%');
         }
 
         $documents = $documents->paginate(5);
-        return view('pages.frontend.documents.history', compact('documents', 'isDataNotValid'));
+        return view('pages.frontend.documents.history', compact('documents', 'isDataNotValid', 'isLetterReadyForPickup'));
     }
 
     /**
