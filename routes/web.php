@@ -56,6 +56,12 @@ Route::middleware([
         Route::get('/complaints/{complaint}/generate-pdf', [ComplaintController::class, 'generatePDFDetail'])->name('complaints.generate-pdf-detail');
         Route::get('/report/generate-pdf', [ComplaintController::class, 'generatePDFAll'])->name('complaints.generate-pdf-all');
 
+        Route::get('/documents', [AdminController::class, 'indexDocuments'])->name('documents.index');
+        Route::get('/documents/{document}', [DocumentController::class, 'show'])->name('documents.show');
+        Route::put('/documents/{document}/response', [DocumentController::class, 'updateResponse'])->name('documents.update-response');
+        Route::put('/documents/{document}/status', [DocumentController::class, 'updateStatus'])->name('documents.update-status');
+        Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
+
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 
@@ -74,6 +80,12 @@ Route::middleware([
         Route::put('/complaints/{complaint}/status', [ComplaintController::class, 'updateStatus'])->name('complaints.update-status');
         Route::get('/complaints/{complaint}/generate-pdf', [ComplaintController::class, 'generatePDFDetail'])->name('complaints.generate-pdf-detail');
         Route::get('/report/generate-pdf', [ComplaintController::class, 'generatePDFAll'])->name('complaints.generate-pdf-all');
+
+        Route::get('/documents', [AdminController::class, 'indexDocuments'])->name('documents.index');
+        Route::get('/documents/{document}', [DocumentController::class, 'show'])->name('documents.show');
+        Route::put('/documents/{document}/response', [DocumentController::class, 'updateResponse'])->name('documents.update-response');
+        Route::put('/documents/{document}/status', [DocumentController::class, 'updateStatus'])->name('documents.update-status');
+        Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
 
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/officer', [UserController::class, 'getStaffAndAdminData'])->name('users.get-officer');

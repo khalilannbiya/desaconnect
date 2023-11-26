@@ -138,7 +138,8 @@
 
 {{-- Feddback Message Section --}}
 <section class="px-6 py-10 bg-white md:px-10 lg:px-24 2xl:px-48 md:py-16 lg:py-20">
-    <h2 class="text-2xl font-bold text-center md:text-4xl">Pesan Tanggapan</h2>
+    <h2 class="text-2xl font-bold text-center md:text-4xl">Pesan Kesalahan <span
+            class="inline-block w-4 h-4 md:w-5 md:h-5 rounded-full bg-red-800 blinking-text"></span></h2>
     <div
         class="flex flex-col items-center gap-2 px-3 mt-5 rounded-md md:gap-3 lg:gap-5 md:px-4 lg:px-6 xl:px-14 py-7 md:py-10 lg:py-16 xl:py-20 md:mt-11 xl:mt-20 bg-champagne">
         <i class="text-3xl font-bold ti ti-quote md:text-4xl text-vermillion"></i>
