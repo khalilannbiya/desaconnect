@@ -80,6 +80,10 @@
         <input
             class="block w-full mt-1 text-sm font-semibold text-yellow-500 capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
             value="{{ $document->status }}" disabled />
+        @elseif ($document->status === 'siap diambil')
+        <input
+            class="block w-full mt-1 text-sm font-semibold text-green-500 capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+            value="{{ $document->status }}" disabled />
         @else
         <input
             class="block w-full mt-1 text-sm font-semibold text-green-500 capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
