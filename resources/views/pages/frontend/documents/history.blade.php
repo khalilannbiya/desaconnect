@@ -39,6 +39,19 @@
         </div>
     </div>
     @endif
+    @if ($isLetterReadyForPickup)
+    <div class="lg:flex lg:justify-center" id="wrapper-alert-letter-ready">
+        <div class="p-4 mt-5 text-center bg-green-200 rounded-md md:px-5 md:py-6 lg:px-6 lg:py-5 lg:w-1/2">
+            <div class="flex justify-between">
+                <div class="w-5 h-5 bg-green-900 rounded-full md:w-6 md:h-6 blinking-text"></div>
+                <img class="w-6 cursor-pointer md:w-7" id="close-alert-letter-ready-btn"
+                    src="{{ asset('assets/icons/x.svg') }}" alt="close button">
+            </div>
+            <p class="mt-3 text-sm font-semibold text-green-900 md:mt-4 md:text-base md:leading-7 lg:text-sm">Tampaknya
+                surat anda sudah menanti di kantor desa, Jangan lupa segera diambil ya!</p>
+        </div>
+    </div>
+    @endif
 
     <div>
         <hr class="mt-5 md:mt-7 lg:mt-8 border-1 border-davys-grey">
@@ -103,12 +116,18 @@
 @push('script')
 <script>
     const closeAlertBtn = document.getElementById("close-alert-btn");
+    const closeAlertLetterReadyBtn = document.getElementById("close-alert-letter-ready-btn");
     const wrapperAlert = document.getElementById("wrapper-alert");
+    const wrapperAlertLetterReady = document.getElementById("wrapper-alert-letter-ready");
 
     closeAlertBtn.addEventListener("click", () => {
-        console.log("click");
         wrapperAlert.classList.toggle('hidden');
         wrapperAlert.classList.toggle('lg:flex');
+    });
+
+    closeAlertLetterReadyBtn.addEventListener("click", () => {
+        wrapperAlertLetterReady.classList.toggle('hidden');
+        wrapperAlertLetterReady.classList.toggle('lg:flex');
     });
 </script>
 @endpush
