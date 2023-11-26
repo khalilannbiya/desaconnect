@@ -83,6 +83,7 @@ class DocumentController extends Controller
                 'tidak valid',
                 'proses validasi',
                 'diproses',
+                'siap diambil',
                 'selesai'
             ];
             return view('pages.admin.documents.detail', compact('document', 'status'));

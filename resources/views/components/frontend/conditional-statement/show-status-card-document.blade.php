@@ -4,6 +4,8 @@
 <p class="font-bold text-xs text-yellow-500 capitalize">{{ $document->status }}</p>
 @elseif ($document->status === 'diproses')
 <p class="font-bold text-xs text-yellow-500 capitalize">{{ $document->status }}</p>
+@elseif ($document->status === 'siap diambil')
+<p class="font-bold text-xs text-green-500 capitalize">{{ $document->status }}</p>
 @else
 <p class="font-bold text-xs text-green-500 capitalize">{{ $document->status }}</p>
 @endif

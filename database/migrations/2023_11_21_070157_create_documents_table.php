@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedInteger('id')->autoIncrement();
             $table->unsignedInteger('user_id');
             $table->enum('document_type', ["surat keterangan usaha", "surat keterangan domisili"]);
-            $table->enum('status', ["proses validasi", "diproses", "tidak valid", "selesai"]);
+            $table->enum('status', ["proses validasi", "diproses", "tidak valid", "siap diambil", "selesai"]);
             $table->softDeletes();
             $table->timestamps();
 
