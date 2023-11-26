@@ -1,7 +1,11 @@
 @extends('layouts.admin')
 
 @section('title')
+@if (auth()->user()->role_id === 1 )
+<title>Dashboard Admin</title>
+@else
 <title>Dashboard Staff</title>
+@endif
 @endsection
 
 @section('title-page')
@@ -102,10 +106,103 @@
         </div>
         <div>
             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                Jumlah Pelapor
+                Jumlah Masyarakat
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                 {{ $cards['totalComplainant'] }}
+            </p>
+        </div>
+    </div>
+
+    {{-- Card --}}
+    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="px-3 py-2 mr-4 text-red-500 bg-red-100 rounded-full p- dark:text-red-100 dark:bg-red-500">
+            <i class="text-xl ti ti-book-upload"></i>
+        </div>
+        <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                Pengajuan Tidak Valid
+            </p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                {{ $cards['invalidSubmission'] }}
+            </p>
+        </div>
+    </div>
+
+    {{-- Card --}}
+    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div
+            class="px-3 py-2 mr-4 text-yellow-500 bg-yellow-100 rounded-full p- dark:text-yellow-100 dark:bg-yellow-500">
+            <i class="text-xl ti ti-loader"></i>
+        </div>
+        <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                Pengajuan Proses Validasi
+            </p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                {{ $cards['validationProcess'] }}
+            </p>
+        </div>
+    </div>
+
+    {{-- Card --}}
+    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div
+            class="px-3 py-2 mr-4 text-yellow-500 bg-yellow-100 rounded-full p- dark:text-yellow-100 dark:bg-yellow-500">
+            <i class="text-xl ti ti-loader"></i>
+        </div>
+        <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                Pengajuan Diproses
+            </p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                {{ $cards['onProccess'] }}
+            </p>
+        </div>
+    </div>
+
+    {{-- Card --}}
+    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="px-3 py-2 mr-4 text-green-500 bg-green-100 rounded-full p- dark:text-green-100 dark:bg-green-500">
+            <i class="text-xl ti ti-circle-check"></i>
+        </div>
+        <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                Surat Siap Diambil
+            </p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                {{ $cards['readyToPickup'] }}
+            </p>
+        </div>
+    </div>
+
+    {{-- Card --}}
+    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="px-3 py-2 mr-4 text-green-500 bg-green-100 rounded-full p- dark:text-green-100 dark:bg-green-500">
+            <i class="text-xl ti ti-circle-check"></i>
+        </div>
+        <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                Pengajuan Selesai
+            </p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                {{ $cards['submissionCompleted'] }}
+            </p>
+        </div>
+    </div>
+
+    {{-- Card --}}
+    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div
+            class="px-3 py-2 mr-4 text-orange-500 bg-orange-100 rounded-full p- dark:text-orange-100 dark:bg-orange-500">
+            <i class="text-xl ti ti-books"></i>
+        </div>
+        <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                Total Pengajuan
+            </p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                {{ $cards['totalSubmission'] }}
             </p>
         </div>
     </div>
