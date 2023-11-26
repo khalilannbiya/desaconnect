@@ -76,7 +76,17 @@ class DocumentController extends Controller
      */
     public function show(Document $document)
     {
-        return view('pages.frontend.documents.detail', compact("document"));
+        if (auth()->user()->role->role === 'complainant') {
+            return view('pages.frontend.documents.detail', compact("document"));
+        } else {
+            $status = [
+                'tidak valid',
+                'proses validasi',
+                'diproses',
+                'selesai'
+            ];
+            return view('pages.admin.documents.detail', compact('document', 'status'));
+        }
     }
 
     /**
@@ -116,8 +126,42 @@ class DocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Document $document)
     {
-        //
+        $document->delete();
+
+        Alert::toast("<strong>Data Berhasil Dihapus!</strong>", 'success')->toHtml()->timerProgressBar();
+        return redirect()->back();
+    }
+
+    public function updateResponse(Request $request, Document $document)
+    {
+        $request->validate([
+            'response' => 'required|string',
+        ], [
+            'response.required' => 'Isikan Response terlebih dahulu!'
+        ]);
+
+        $data = $request->all();
+
+        $document->update($data);
+
+        Alert::toast("<strong>Anda sudah memberikan pesan kesalahan!</strong>", 'success')->toHtml()->timerProgressBar();
+        return redirect()->back();
+    }
+
+    public function updateStatus(Request $request, Document $document)
+    {
+        $request->validate([
+            'status' => 'required|string',
+        ], [
+            'status.required' => 'Pilih status terlebih dahulu!'
+        ]);
+
+        $data = $request->all();
+
+        $document->update($data);
+        Alert::toast("<strong>Berhasil Ubah Status!</strong>", 'success')->toHtml()->timerProgressBar();
+        return redirect()->back();
     }
 }
