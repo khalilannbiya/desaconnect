@@ -43,7 +43,8 @@
             <p
                 class="mt-3 text-sm font-semibold text-green-900 md:mt-4 md:text-base md:leading-7 lg:leading-8 lg:text-sm">
                 Selamat! Pengajuan surat Anda telah selesai diproses dan berhasil dibuat. Anda dapat mengambil surat
-                tersebut di kantor desa. Terima kasih atas kerja sama Anda!</p>
+                tersebut di kantor desa dengan membawa bukti pengajuan yang sebelumnya ada download telebih dahulu
+                dibawah halaman ini. Terima kasih atas kerja sama Anda!</p>
         </div>
     </div>
     @endif
@@ -144,6 +145,15 @@
     @endif
 </section>
 
+@if ($document->status === "siap diambil")
+<section class="px-6 pb-10 pt-5 bg-white md:px-10 lg:px-20 2xl:px-48 md:py-16 lg:py-20">
+    <div class="flex justify-center">
+        <a href="{{ route('complainant.documents.generate-pdf-detail', $document->id) }}"
+            class="px-4 py-2 text-sm text-white bg-black border-2 border-black rounded-md md:px-9 md:py-3 md:text-xl lg:text-lg active:border-vermillion active:bg-vermillion active:shadow-xl lg:hover:bg-vermillion lg:hover:border-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Cetak
+            Bukti Pengajuan</a>
+    </div>
+</section>
+@endif
 
 @if ($document->status === "tidak valid")
 <div class="px-6 md:px-10 lg:px-24 2xl:px-48">

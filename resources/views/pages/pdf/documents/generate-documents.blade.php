@@ -33,15 +33,15 @@
             padding-bottom: 20px;
         }
 
-        .table-complaints {
+        .table-documents {
             width: 100%;
             border-collapse: collapse;
             border: 1px solid black;
             margin-top: 10px;
         }
 
-        .table-complaints th,
-        .table-complaints td {
+        .table-documents th,
+        .table-documents td {
             border-collapse: collapse;
             border: 1px solid black;
             padding: 10px;
@@ -74,35 +74,35 @@
     <div style="text-align: center;">
         <h1
             style="display: inline-block; text-align: center; font-size: 14pt; margin-top: 36pt; border-bottom: 2px solid black;">
-            LAPORAN DATA ADUAN
+            LAPORAN DATA PENGAJUAN
         </h1>
     </div>
 
-    <p style="margin-top: 60px;">Total aduan : {{ $total }} aduan</p>
-    <table class="table-complaints">
+    <p style="margin-top: 60px;">Total Pengajuan : {{ $total }} pengajuan</p>
+    <table class="table-documents">
         <thead>
             <tr
                 class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                <th style="width: 30%;" class="px-4 py-3">Judul</th>
-                <th style="width: 23%;" class="px-4 py-3">Kategori</th>
+                <th style="width: 30%;" class="px-4 py-3">Nama Pengaju</th>
+                <th style="width: 23%;" class="px-4 py-3">Jenis Surat</th>
                 <th style="width: 23%;" class="px-4 py-3">Status</th>
                 <th style="width: 23%;" class="px-4 py-3">Tanggal</th>
             </tr>
         </thead>
         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-            @foreach ($complaints as $complaint)
+            @foreach ($documents as $document)
             <tr class="text-gray-700 dark:text-gray-400">
                 <td>
-                    {{ $complaint->title }}
+                    {{ $document->user->name }}
                 </td>
-                <td style="text-align: center;">
-                    {{ $complaint->category->category }}
+                <td style="text-align: center; text-transform: capitalize">
+                    {{ $document->document_type }}
                 </td>
                 <td style="text-align: center;" class="status-text">
-                    {{ $complaint->status }}
+                    {{ $document->status }}
                 </td>
                 <td style="text-align: center;">
-                    {{ $complaint->created_at->format('d/m/Y') }}
+                    {{ $document->created_at->format('d/m/Y') }}
                 </td>
             </tr>
             @endforeach

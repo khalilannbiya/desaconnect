@@ -4,8 +4,8 @@
         class="fixed top-0 left-0 z-10 flex items-center justify-between w-full px-6 py-3 md:py-5 lg:py-2 md:px-10 lg:px-24 2xl:px-48">
         <div>
             <a href="{{ route('index') }}#up">
-                <img class="w-[2.5rem] md:w-16 lg:w-16" src="{{ asset('assets/images/logo.png') }}"
-                    alt="Logo LaporDesa" />
+                <img class="w-[2rem] md:w-14 lg:w-14" src="{{ asset('assets/images/logo.png') }}"
+                    alt="Logo DesaConnect" />
             </a>
         </div>
         <ul id="navList"

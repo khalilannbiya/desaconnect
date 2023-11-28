@@ -51,7 +51,7 @@
     <div style="text-align: center;">
         <h1
             style="display: inline-block; text-align: center; font-size: 14pt; margin-top: 36pt; border-bottom: 2px solid black;">
-            DETAIL CETAK DATA ADUAN
+            BUKTI PENGAJUAN
         </h1>
     </div>
 
@@ -60,63 +60,53 @@
         <tr>
             <td style="width: 30%;">Nama</td>
             <td>:</td>
-            <td style="width: 67%;">{{ $complaint->user->name }}</td>
+            <td style="width: 67%;">{{ $document->user->name }}</td>
         </tr>
         <tr>
             <td style="width: 30%;">Email</td>
             <td>:</td>
-            <td style="width: 67%;">{{ $complaint->user->email }}</td>
+            <td style="width: 67%;">{{ $document->user->email }}</td>
         </tr>
         <tr>
             <td style="width: 30%;">NIK</td>
             <td>:</td>
-            <td style="width: 67%;">{{ $complaint->user->nik }}</td>
+            <td style="width: 67%;">{{ $document->user->nik }}</td>
         </tr>
         <tr>
             <td style="width: 30%;">Nomor Telepon</td>
             <td>:</td>
-            <td style="width: 67%;">{{ $complaint->user->phone }}</td>
+            <td style="width: 67%;">{{ $document->user->phone }}</td>
         </tr>
         <tr>
             <td style="width: 30%;">Alamat</td>
             <td>:</td>
-            <td style="width: 67%; line-height: 1.5;">{{ $complaint->user->address }}</td>
+            <td style="width: 67%; line-height: 1.5;">{{ $document->user->address }}</td>
         </tr>
     </table>
 
-    <p style="margin-top: 15px;">Data Aduan : </p>
+    <p style="margin-top: 15px;">Data Pengajuan Surat : </p>
     <table style="margin-top: 15px; padding-left: 40px; width: 100%">
         <tr>
-            <td style="width: 30%;">Judul</td>
+            <td style="width: 30%;">Nomor Pengajuan</td>
             <td>:</td>
-            <td style="width: 67%;">{{ $complaint->title }}</td>
+            <td style="width: 67%;">{{ $document->request_number }}</td>
         </tr>
         <tr>
-            <td style="width: 30%;">Status Aduan</td>
+            <td style="width: 30%;">Jenis Surat</td>
             <td>:</td>
-            <td style="width: 67%; text-transform: capitalize">{{ $complaint->status }}</td>
+            <td style="width: 67%; text-transform: capitalize">{{ $document->document_type }}</td>
         </tr>
         <tr>
-            <td style="width: 30%;">Kategori Aduan</td>
+            <td style="width: 30%;">Status</td>
             <td>:</td>
-            <td style="width: 67%; text-transform: capitalize">{{ $complaint->category->category }}</td>
+            <td style="width: 67%; text-transform: capitalize">{{ $document->status }}</td>
         </tr>
         <tr>
-            <td style="width: 30%;">Diadukan Pada</td>
+            <td style="width: 30%;">Diajukan Pada</td>
             <td>:</td>
-            <td style="width: 67%;">{{ $complaint->created_at->format('H:i, d-m-Y') }}</td>
+            <td style="width: 67%;">{{ $document->created_at->format('H:i, d-m-Y') }}</td>
         </tr>
     </table>
-
-    <p style="margin-top: 20px; font-weight: 700;">Dengan isi aduan sebagai berikut : </p>
-    <p style="margin-top: 10px">{{ $complaint->body }}</p>
-
-    <p style="margin-top: 15px; font-weight: 700;">Tanggapan Petugas : </p>
-    <p style="margin-top: 10px">{{ $complaint->response ? $complaint->response : "Belum ada response dari petugas" }}
-    </p>
-
-    <p style="margin-top: 15px; font-weight: 700;">Bukti Foto : </p>
-    <img style="margin-top: 10px; width: 50%;" src="{{ public_path('storage/' . $complaint->photo_url) }}">
     <footer>
         <p style="margin-top: 1rem">Dicetak pada {{ $date }}</p>
     </footer>

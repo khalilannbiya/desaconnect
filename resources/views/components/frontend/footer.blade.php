@@ -4,11 +4,10 @@
             <img class="w-20 md:w-28 lg:w-20 mb-4" src="{{ asset('assets/images/logo.png') }}" alt="Logo LaporDesa">
             <address
                 class="text-sm md:text-base lg:text-sm text-davys-grey font-medium leading-6 md:leading-7 lg:leading-7">
-                Desa
-                Lemahmulya, Kecamatan
-                Majalaya, <br>
-                Kabupaten
-                Karawang 41370
+                Jl Menati 1 No. 25 Desa
+                Puseurjaya, <br> Kec.
+                Telukjambe Timur, Kabupaten Karawang, <br>
+                Jawa Barat 41361
             </address>
         </div>
         <div>
