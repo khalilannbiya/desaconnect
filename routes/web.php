@@ -40,6 +40,7 @@ Route::middleware([
         Route::get('/complaints/{complaint}/generate-pdf', [ComplaintController::class, 'generatePDFDetail'])->name('complaints.generate-pdf-detail');
 
         Route::resource("documents", DocumentController::class);
+        Route::get('/documents/{document}/download', [DocumentController::class, 'generatePDFDetail'])->name('documents.generate-pdf-detail');
     });
 
     // Staff
@@ -61,6 +62,7 @@ Route::middleware([
         Route::put('/documents/{document}/response', [DocumentController::class, 'updateResponse'])->name('documents.update-response');
         Route::put('/documents/{document}/status', [DocumentController::class, 'updateStatus'])->name('documents.update-status');
         Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
+        Route::get('/report/document/download', [DocumentController::class, 'generatePDFAll'])->name('documents.generate-pdf-all');
 
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
@@ -86,6 +88,7 @@ Route::middleware([
         Route::put('/documents/{document}/response', [DocumentController::class, 'updateResponse'])->name('documents.update-response');
         Route::put('/documents/{document}/status', [DocumentController::class, 'updateStatus'])->name('documents.update-status');
         Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
+        Route::get('/report/document/download', [DocumentController::class, 'generatePDFAll'])->name('documents.generate-pdf-all');
 
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/officer', [UserController::class, 'getStaffAndAdminData'])->name('users.get-officer');

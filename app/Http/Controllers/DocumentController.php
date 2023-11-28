@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Category;
 use App\Models\Document;
-use App\Models\Complaint; // TODO: delete after index view has finish
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\DocumentRequirement;
 use App\Http\Requests\DocumentRequest;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Complaint; // TODO: delete after index view has finish
 
 class DocumentController extends Controller
 {
@@ -165,5 +167,54 @@ class DocumentController extends Controller
         $document->update($data);
         Alert::toast("<strong>Berhasil Ubah Status!</strong>", 'success')->toHtml()->timerProgressBar();
         return redirect()->back();
+    }
+
+    public function generatePDFDetail(Document $document)
+    {
+        $data = [
+            'document' => $document,
+            'date' => Carbon::now()
+        ];
+
+        $pdf = Pdf::loadView('pages.pdf.documents.generate-detail-document', $data)->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->setPaper('a4', 'potrait');
+        return $pdf->download("Bukti Pengajuan Surat " . $document->user->name . ".pdf");
+    }
+
+    public function generatePDFAll(Request $request)
+    {
+        $documents = Document::latest();
+
+        if ($request->has(['start-date', 'end-date'])) {
+            $startDate = $request->date('start-date');
+            $endDate = $request->date('end-date');
+
+            $documents = $documents->whereBetween('created_at', [$startDate, $endDate]);
+        } elseif ($request->has(['month'])) {
+            $month = $request->month; // example => "2023-06"
+            $dateParts = explode("-", $month); // example => ["2023", "06"]
+            $year = $dateParts[0]; // example => "2023"
+            $month = $dateParts[1]; // example => "06"
+
+            $documents = $documents->whereMonth('created_at', $month)
+                ->whereYear('created_at', $year);
+        } elseif ($request->has('year')) {
+            $yearInput = $request->year;
+
+            $documents = $documents->whereYear('created_at', $yearInput);
+        }
+
+        $documents = $documents->get();
+
+        $data = [
+            'documents' => $documents,
+            'total' => $documents->count(),
+            'date' => Carbon::now()
+        ];
+
+        $pdf = Pdf::loadView('pages.pdf.documents.generate-documents', $data)
+            ->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif'])
+            ->setPaper('a4', 'potrait');
+
+        return $pdf->download("Data Pengajuan.pdf");
     }
 }

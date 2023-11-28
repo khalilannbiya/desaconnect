@@ -175,8 +175,6 @@ class ComplaintController extends Controller
      */
     public function generatePDFAll(Request $request)
     {
-        // $complaints = Complaint::latest()->get();
-        // $date = Carbon::now();
         $complaints = Complaint::latest();
 
         if ($request->has(['start-date', 'end-date'])) {
@@ -202,6 +200,7 @@ class ComplaintController extends Controller
 
         $data = [
             'complaints' => $complaints,
+            'total' => $complaints->count(),
             'date' => Carbon::now()
         ];
 
@@ -210,7 +209,5 @@ class ComplaintController extends Controller
             ->setPaper('a4', 'potrait');
 
         return $pdf->download("Data Aduan.pdf");
-
-        // return view('pages.pdf.generate-complaints', compact('complaints', 'date'));
     }
 }
