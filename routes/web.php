@@ -21,6 +21,15 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('/profile', function () {
+    return view('pages.frontend.profile');
+})->name('profile');
+Route::get('/government', function () {
+    return view('pages.frontend.government');
+})->name('government');
+Route::get('/data-penduduk', function () {
+    return view('pages.frontend.penduduk');
+})->name('data-penduduk');
 Route::get('/complaints/track', [FrontendController::class, 'tracking'])->name('complaints.track');
 Route::get('/complaints/public', [FrontendController::class, 'publicComplaints'])->name('complaints.public');
 Route::get('/complaints/{complaint}/public', [FrontendController::class, 'show'])->name('complaints.show.public');

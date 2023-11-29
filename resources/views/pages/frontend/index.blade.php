@@ -2,10 +2,10 @@
 
 @section('title')
 @guest
-<title>LaporDesa</title>
+<title>DesaConnect</title>
 @endguest
 @auth
-<title>Beranda | LaporDesa</title>
+<title>Beranda | DesaConnect</title>
 @endauth
 @endsection
 
@@ -14,33 +14,30 @@
 {{-- Jumbotron --}}
 <section id="up"
     class="relative flex flex-col items-center justify-center h-screen px-6 overflow-x-hidden gap-7 md:gap-12 lg:gap-12 md:px-10 lg:px-24 2xl:px-48">
-    <h1 id="up" class="text-5xl font-bold md:text-7xl xl:text-7xl">Lapor<span class="text-vermillion">Desa</span></h1>
+    <h1 id="up" class="text-4xl font-bold md:text-7xl xl:text-7xl">Desa<span class="text-vermillion">Connect</span></h1>
     <p
         class="text-xs font-medium leading-5 text-center md:px-20 lg:px-32 text-davys-grey md:text-base lg:text-sm md:leading-8 lg:leading-7">
-        Kami percaya
-        pelayanan
-        yang baik
-        dimulai dari partisipasi aktif masyarakat. Bergabunglah dalam sistem pengaduan ini untuk memperbaiki
-        pelayanan desa dan membangun desa yang lebih baik bersama-sama.</p>
+        Kami mengundang Anda untuk menjadi bagian dari perubahan positif di desa kita. Dengan bergabung dalam Sistem
+        Informasi Pengaduan Masyarakat dan Pengajuan Surat Desa, Anda memiliki kesempatan unik untuk memberikan
+        kontribusi nyata dan membentuk masa depan desa kita</p>
     <div class="flex flex-wrap-reverse justify-center gap-4 font-semibold md:gap-7 lg:gap-6">
 
         @guest
-        <a href="#lacak"
-            class="px-5 py-2 border-2 border-black rounded-md md:px-10 md:py-3 lg:text-lg active:border-vermillion active:shadow-xl active:text-vermillion md:text-xl lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Lacak
-            Aduan</a>
+        <a href="{{ route('login') }}"
+            class="px-5 py-2 border-2 border-black rounded-md md:px-10 md:py-3 lg:text-lg active:border-vermillion active:shadow-xl active:text-vermillion md:text-xl lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Pengajuan
+            Surat</a>
         @endguest
 
         @auth
         @if (auth()->user()->role->role === 'complainant')
-        <a href="{{ route('complainant.complaints.index') }}"
-            class="px-5 py-2 border-2 border-black rounded-md md:px-10 md:py-3 lg:text-lg active:border-vermillion active:shadow-xl active:text-vermillion md:text-xl lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Riwayat</a>
+        <a href="{{ route('complainant.documents.create') }}"
+            class="px-5 py-2 border-2 border-black rounded-md md:px-10 md:py-3 lg:text-lg active:border-vermillion active:shadow-xl active:text-vermillion md:text-xl lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Pengajuan
+            Surat</a>
         @endif
         @endauth
         <a href="{{ auth()->user() ? route('complainant.complaints.create') : route('login') }}"
             class="px-5 py-2 text-white bg-black border-2 border-black rounded-md md:px-10 md:py-3 lg:text-lg active:border-vermillion active:bg-vermillion active:shadow-xl md:text-xl lg:hover:bg-vermillion lg:hover:border-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Laporkan!</a>
     </div>
-    <img class="absolute w-2/3 md:w-96 xl:w-[32rem] left-[-30%] md:-left-32 xl:-left-60 top-[3%] md:top-14 xl:top-9 -z-10"
-        src="{{ asset('assets/icons/vector-1.png') }}" alt="Icon">
     <img class="absolute w-1/4 md:w-44 xl:w-[10rem] right-[-8%] md:-right-12 bottom-[7%] -z-10"
         src="{{ asset('assets/icons/stars.png') }}" alt="">
 </section>
@@ -128,7 +125,7 @@
             src="{{ asset('assets/icons/vector-2.png') }}" alt="Icon">
     </div>
     <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d393.4365742603966!2d107.37443883321615!3d-6.317176251200609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e697725fd668f21%3A0x13818a45864a173d!2sKantor%20Desa%20Lemah%20Mulya!5e0!3m2!1sen!2sid!4v1681719921578!5m2!1sen!2sid"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.4380937278606!2d107.29553927448806!3d-6.337257262004191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6976244c3e79f7%3A0x4d2eeeae0776b25e!2sKantor%20Desa%20Puseur%20Jaya!5e0!3m2!1sen!2sid!4v1701268659390!5m2!1sen!2sid"
         class="aspect-square md:aspect-video lg:h-96 border-2 border-black rounded-md shadow-[6px_6px_0px_#cd4631] md:shadow-[9px_9px_0px_#cd4631]"
         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <div class="md:bg-champagne md:px-4 lg:px-6 md:py-8 lg:py-10 md:rounded">

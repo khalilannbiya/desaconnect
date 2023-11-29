@@ -1,9 +1,9 @@
-<footer class="px-6 md:px-10 lg:px-24 2xl:px-48 pt-16 pb-5 md:pt-28 lg:pt-36 lg:pb-8">
-    <section class="flex flex-col md:flex-row md:justify-between gap-6 md:gap-0">
+<footer class="px-6 pt-16 pb-5 md:px-10 lg:px-24 2xl:px-48 md:pt-28 lg:pt-36 lg:pb-8">
+    <section class="flex flex-col gap-6 md:flex-row md:justify-between md:gap-0">
         <div>
-            <img class="w-20 md:w-28 lg:w-20 mb-4" src="{{ asset('assets/images/logo.png') }}" alt="Logo LaporDesa">
+            <img class="w-20 mb-4 md:w-28 lg:w-20" src="{{ asset('assets/images/logo.png') }}" alt="Logo LaporDesa">
             <address
-                class="text-sm md:text-base lg:text-sm text-davys-grey font-medium leading-6 md:leading-7 lg:leading-7">
+                class="text-sm font-medium leading-6 md:text-base lg:text-sm text-davys-grey md:leading-7 lg:leading-7">
                 Jl Menati 1 No. 25 Desa
                 Puseurjaya, <br> Kec.
                 Telukjambe Timur, Kabupaten Karawang, <br>
@@ -13,43 +13,43 @@
         <div>
             <ul>
                 <li
-                    class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
+                    class="mb-2 text-base transition-all duration-300 text-medium md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion">
                     <a href="{{ route('index') }}#up">Beranda</a>
                 </li>
 
                 @guest
                 <li
-                    class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
+                    class="mb-2 text-base transition-all duration-300 text-medium md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion">
                     <a href="{{ route('index') }}#lacak">Lacak Aduan</a>
                 </li>
                 <li
-                    class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
-                    <a href="{{ route('index') }}#cara">Tata Cara</a>
+                    class="mb-2 text-base transition-all duration-300 text-medium md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion">
+                    <a href="{{ route('government') }}">Pemerintahan</a>
                 </li>
                 <li
-                    class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300">
-                    <a href="{{ route('index') }}#about">Tentang Kami</a>
+                    class="text-base transition-all duration-300 text-medium md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion">
+                    <a href="{{ route('complaints.public') }}">Aduan Public</a>
                 </li>
                 @endguest
 
                 @auth
                 <li
-                    class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
-                    <a href="#">Buat Aduan</a>
+                    class="mb-2 text-base transition-all duration-300 text-medium md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion">
+                    <a href="{{ route('complainant.complaints.create') }}">Buat Aduan</a>
                 </li>
                 <li
-                    class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
-                    <a href="#cara">Riwayat</a>
+                    class="mb-2 text-base transition-all duration-300 text-medium md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion">
+                    <a href="{{ route('complainant.documents.create') }}">Pengajuan Surat</a>
                 </li>
                 <li
-                    class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300">
+                    class="text-base transition-all duration-300 text-medium md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion">
                     <a href="{{ route('profile.show') }}">Pengaturan</a>
                 </li>
                 @endauth
             </ul>
         </div>
     </section>
-    <h6 class="text-xs md:text-sm lg:text-sm text-medium mt-6 md:mt-8 md:text-center text-davys-grey">©2023. All
+    <h6 class="mt-6 text-xs md:text-sm lg:text-sm text-medium md:mt-8 md:text-center text-davys-grey">©2023. All
         Rights
-        Reserved. <span class="text-vermillion">LaporDesa</span></h6>
+        Reserved. <span class="text-vermillion">DesaConnect</span></h6>
 </footer>
