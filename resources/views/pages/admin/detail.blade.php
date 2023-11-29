@@ -97,7 +97,7 @@
 <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
     <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
         @if ($complaint->photo_url)
-        <img class="w-48" src="{{ Storage::url($complaint->photo_url) }}" alt="Bukti Foto">
+        <img onclick="openModalPreview()" class="w-48" src="{{ Storage::url($complaint->photo_url) }}" alt="Bukti Foto">
         @else
         <p class="text-slate-200">Tidak Ada Bukti Foto</p>
         @endif
@@ -144,6 +144,8 @@
 {{-- Modal for filling out response form --}}
 @include('components.admin.modal.modal-response')
 @include('components.admin.modal.modal-status')
+
+@include('components.preview-image.preview-image')
 @endsection
 
 @push('script')
