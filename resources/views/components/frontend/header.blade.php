@@ -17,11 +17,26 @@
                 <a href="{{ route('index') }}#up"
                     class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion active {{ in_array(Route::current()->getName(), ['index' ]) ? 'text-vermillion' : '' }}">Beranda</a>
             </li>
-            <li>
-                <a href="{{ route('index') }}#about"
-                    class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Tentang
-                    Kami</a>
+
+            <li class="flex flex-col lg:block">
+                <button type="button" id="dropdownBtnProfile"
+                    class="flex flex-row justify-center text-black transition-all duration-500 lg:items-center md:text-lg lg:text-sm hover:text-vermillion {{ in_array(Route::current()->getName(), ['profile', 'government', 'data-penduduk']) ? 'text-vermillion' : '' }}">Profile
+                    <img id="caret-dropdown-profile" class="-rotate-90 lg:w-5"
+                        src="{{ asset('assets/icons/caret-down.svg') }}"></button>
+
+                <div class="flex-col items-center lg:gap-3 lg:items-start hidden lg:absolute lg:bg-[#E8C6B6] lg:rounded-md lg:px-3 lg:py-3"
+                    id="dropdownContentProfile">
+                    <a href="{{ route('profile') }}"
+                        class="my-4 text-black transition-all duration-500 lg:my-0 md:text-lg lg:text-sm hover:text-vermillion">Sejarah
+                        Desa</a>
+                    <a href="{{ route('government') }}"
+                        class="text-black transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Pemerintahan</a>
+                    <a href="{{ route('data-penduduk') }}"
+                        class="text-black transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Data
+                        Penduduk</a>
+                </div>
             </li>
+
             <li>
                 <a href="{{ route('complaints.public') }}"
                     class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion {{ in_array(Route::current()->getName(), ['complaints.public' ]) ? 'text-vermillion' : '' }}">Aduan
@@ -43,6 +58,25 @@
             <li>
                 <a href="{{ route('index') }}"
                     class="{{ Route::current()->getName() == 'index' ? 'text-vermillion' : 'text-black' }} md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500 active">Beranda</a>
+            </li>
+
+            <li class="flex flex-col lg:block">
+                <button type="button" id="dropdownBtnProfile"
+                    class="flex flex-row justify-center text-black transition-all duration-500 lg:items-center md:text-lg lg:text-sm hover:text-vermillion {{ in_array(Route::current()->getName(), ['profile', 'government', 'data-penduduk']) ? 'text-vermillion' : '' }}">Profile
+                    <img id="caret-dropdown-profile" class="-rotate-90 lg:w-5"
+                        src="{{ asset('assets/icons/caret-down.svg') }}"></button>
+
+                <div class="flex-col items-center lg:gap-3 lg:items-start hidden lg:absolute lg:bg-[#E8C6B6] lg:rounded-md lg:px-3 lg:py-3"
+                    id="dropdownContentProfile">
+                    <a href="{{ route('profile') }}"
+                        class="my-4 text-black transition-all duration-500 lg:my-0 md:text-lg lg:text-sm hover:text-vermillion">Sejarah
+                        Desa</a>
+                    <a href="{{ route('government') }}"
+                        class="text-black transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Pemerintahan</a>
+                    <a href="{{ route('data-penduduk') }}"
+                        class="text-black transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Data
+                        Penduduk</a>
+                </div>
             </li>
 
             <li class="flex flex-col lg:block">
@@ -116,27 +150,48 @@
 
 @push("script")
 <script>
+    const dropdownBtnProfile = document.getElementById("dropdownBtnProfile");
+    const dropdownContentProfile = document.getElementById("dropdownContentProfile");
+    const caretDropdownProfile = document.getElementById('caret-dropdown-profile');
+
     const dropdownBtnLayanan = document.getElementById("dropdownBtnLayanan");
-    const dropdownBtnRiwayat = document.getElementById("dropdownBtnRiwayat");
     const dropdownContentLayanan = document.getElementById("dropdownContentLayanan");
-    const dropdownContentRiwayat = document.getElementById("dropdownContentRiwayat");
     const caretDropdownLayanan = document.getElementById('caret-dropdown');
+
+    const dropdownBtnRiwayat = document.getElementById("dropdownBtnRiwayat");
+    const dropdownContentRiwayat = document.getElementById("dropdownContentRiwayat");
     const caretDropdownRiwayat = document.getElementById('caret-dropdown-riwayat');
 
-    dropdownBtnLayanan.addEventListener('click', () => {
-        dropdownContentLayanan.classList.toggle('hidden');
-        dropdownContentLayanan.classList.toggle('flex');
-        caretDropdownLayanan.classList.toggle('-rotate-90');
+
+    dropdownBtnProfile.addEventListener('click', () => {
+        dropdownContentProfile.classList.toggle('hidden');
+        dropdownContentProfile.classList.toggle('flex');
+        caretDropdownProfile.classList.toggle('-rotate-90');
     });
 
-    dropdownBtnRiwayat.addEventListener('click', () => {
-        dropdownContentRiwayat.classList.toggle('hidden');
-        dropdownContentRiwayat.classList.toggle('flex');
-        caretDropdownRiwayat.classList.toggle('-rotate-90');
-    });
+    if (dropdownBtnLayanan && dropdownBtnRiwayat) {
+        dropdownBtnLayanan.addEventListener('click', () => {
+            dropdownContentLayanan.classList.toggle('hidden');
+            dropdownContentLayanan.classList.toggle('flex');
+            caretDropdownLayanan.classList.toggle('-rotate-90');
+        });
+
+        dropdownBtnRiwayat.addEventListener('click', () => {
+            dropdownContentRiwayat.classList.toggle('hidden');
+            dropdownContentRiwayat.classList.toggle('flex');
+            caretDropdownRiwayat.classList.toggle('-rotate-90');
+        });
+    }
 
     // Close dropdown content when clicking outside of the dropdown
     window.addEventListener('click', (event) => {
+
+        if (!event.target.matches("#dropdownBtnProfile") && !event.target.matches("#dropdownContentProfile")) {
+            dropdownContentProfile.classList.add('hidden');
+            dropdownContentProfile.classList.remove('flex');
+            caretDropdownProfile.classList.add('-rotate-90');
+        }
+
         if (!event.target.matches("#dropdownBtnLayanan") && !event.target.matches("#dropdownContentLayanan")) {
             dropdownContentLayanan.classList.add('hidden');
             dropdownContentLayanan.classList.remove('flex');
