@@ -1,6 +1,4 @@
-# LaporDesa
-
-The purpose of this project is to develop an information system that allows residents of Lemahmulya village to file complaints against village officials online. The system will integrate a web-based application with a database to store complaint data and information about village officials. The information system will have several key features, including an online complaint form, complaint tracking, complaint history, and complaint reporting and statistics. The ultimate goal of this project is to create an information system that is user-friendly and effective in handling complaints from residents against village officials in Lemahmulya village. By having this information system, it is expected that residents can file complaints more easily and quickly, and village officials can be more effective and efficient in handling complaints. And the other purpose of creating this system is for learning purposes on Laravel version 10. This application was created using Laravel v10 and requires a minimum of PHP v8.1, so if during the installation or usage process there are errors or bugs, it is possible that it is due to an unsupported PHP version.
+# DesaConnect
 
 ## Tech Stack
 
@@ -13,17 +11,17 @@ The purpose of this project is to develop an information system that allows resi
 Clone the project
 
 ```bash
-  git clone https://github.com/khalilannbiya/lapordesa.git
+  git clone https://github.com/khalilannbiya/desaconnect.git
 ```
 
 Or Download ZIP
 
-[Link](https://github.com/khalilannbiya/lapordesa/archive/refs/heads/main.zip)
+[Link](https://github.com/khalilannbiya/desaconnect/archive/refs/heads/main.zip)
 
 Go to the project directory
 
 ```bash
-  cd lapordesa
+  cd desaconnect
 ```
 
 Run the command
@@ -47,11 +45,11 @@ Copy the .env file from .env.example.
 Configure the .env file
 
 ```bash
-  APP_NAME=LaporDesa
+  APP_NAME=DesaConnect
   APP_ENV=local //for development
   APP_KEY= // run the command php artisan key:generate
-  APP_DEBUG=true
-  APP_URL=http://lapordesa.test
+  APP_DEBUG=true // for development. change to false if you want publish the project
+  APP_URL=http://desaconnect.test // for development, Adjust according to your URL when it's already hosted
 
   DB_CONNECTION=mysql
   DB_HOST=127.0.0.1
