@@ -63,7 +63,7 @@
     <label class="block mt-4 text-sm ">
         <span class="text-gray-700 dark:text-gray-400">Jenis Surat</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input capitalize"
+            class="block w-full mt-1 text-sm capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
             value="{{ $document->document_type }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
@@ -103,16 +103,17 @@
 </h4>
 <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
     <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-        <img class="w-48" src="{{ Storage::url($item->url) }}" alt="Peryaratan {{ $item->name }}">
+        <img onclick="openModalPreview()" class="w-48" src="{{ Storage::url($item->url) }}"
+            alt="Peryaratan {{ $item->name }}">
     </div>
 </div>
 @endforeach
 <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
-    Perhatian <span class="inline-block w-3 h-3 rounded-full bg-red-800 blinking-text"></span>
+    Perhatian <span class="inline-block w-3 h-3 bg-red-800 rounded-full blinking-text"></span>
 </h4>
 <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
     <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-        <p class="text-white text-sm md:leading-6 lg:leading-7 lg:text-base">
+        <p class="text-sm text-white md:leading-6 lg:leading-7 lg:text-base">
             Berikan pesan kesalahan ketika ada persyaratan yang tidak lengkap atau tidak valid. Jelaskan mengapa
             kondisi-kondisi tersebut tidak valid dan beri petunjuk untuk melakukan pembaruan
         </p>
@@ -151,6 +152,8 @@
 {{-- Modal for filling out response form --}}
 @include('components.admin.modal.documents.modal-response')
 @include('components.admin.modal.documents.modal-status')
+
+@include('components.preview-image.preview-image')
 @endsection
 
 @push('script')

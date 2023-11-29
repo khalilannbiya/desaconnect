@@ -112,7 +112,8 @@
             <h3 class="font-semibold md:text-lg">{{ $item->name }}</h3>
             <div class="flex flex-row items-center justify-between w-full gap-2 mt-5" id="wrapper-edit">
                 <div class="basis-1/2 lg:basis-1/3 2xl:basis-80">
-                    <img class="w-auto" src="{{ Storage::url($item->url) }}" alt="Gambar {{ $item->name }}">
+                    <img onclick="openModalPreview() class=" w-auto" src="{{ Storage::url($item->url) }}"
+                        alt="Gambar {{ $item->name }}">
                 </div>
                 <label for="{{ str_replace(' ', '-', strtolower($item->name)) }}"
                     id="{{ str_replace(' ', '-', strtolower($item->name)) }}wrapper"
@@ -137,7 +138,8 @@
         <h3 class="font-semibold md:text-lg">{{ $item->name }}</h3>
         <div class="flex flex-row items-center justify-between w-full gap-2 mt-5" id="wrapper-edit">
             <div class="basis-1/2 lg:basis-1/3 2xl:basis-80">
-                <img class="w-auto" src="{{ Storage::url($item->url) }}" alt="Gambar {{ $item->name }}">
+                <img onclick="openModalPreview()" class="w-auto" src="{{ Storage::url($item->url) }}"
+                    alt="Gambar {{ $item->name }}">
             </div>
         </div>
     </div>
@@ -146,7 +148,7 @@
 </section>
 
 @if ($document->status === "siap diambil")
-<section class="px-6 pb-10 pt-5 bg-white md:px-10 lg:px-20 2xl:px-48 md:py-16 lg:py-20">
+<section class="px-6 pt-5 pb-10 bg-white md:px-10 lg:px-20 2xl:px-48 md:py-16 lg:py-20">
     <div class="flex justify-center">
         <a href="{{ route('complainant.documents.generate-pdf-detail', $document->id) }}"
             class="px-4 py-2 text-sm text-white bg-black border-2 border-black rounded-md md:px-9 md:py-3 md:text-xl lg:text-lg active:border-vermillion active:bg-vermillion active:shadow-xl lg:hover:bg-vermillion lg:hover:border-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Cetak
@@ -163,7 +165,7 @@
 {{-- Feddback Message Section --}}
 <section class="px-6 py-10 bg-white md:px-10 lg:px-24 2xl:px-48 md:py-16 lg:py-20">
     <h2 class="text-2xl font-bold text-center md:text-4xl">Pesan Kesalahan <span
-            class="inline-block w-4 h-4 md:w-5 md:h-5 rounded-full bg-red-800 blinking-text"></span></h2>
+            class="inline-block w-4 h-4 bg-red-800 rounded-full md:w-5 md:h-5 blinking-text"></span></h2>
     <div
         class="flex flex-col items-center gap-2 px-3 mt-5 rounded-md md:gap-3 lg:gap-5 md:px-4 lg:px-6 xl:px-14 py-7 md:py-10 lg:py-16 xl:py-20 md:mt-11 xl:mt-20 bg-champagne">
         <i class="text-3xl font-bold ti ti-quote md:text-4xl text-vermillion"></i>
@@ -172,6 +174,8 @@
     </div>
 </section>
 @endif
+
+@include('components.preview-image.preview-image')
 
 @endsection
 

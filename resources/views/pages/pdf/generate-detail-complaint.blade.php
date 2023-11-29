@@ -116,7 +116,11 @@
     </p>
 
     <p style="margin-top: 15px; font-weight: 700;">Bukti Foto : </p>
+    @if ($complaint->photo_url)
     <img style="margin-top: 10px; width: 50%;" src="{{ public_path('storage/' . $complaint->photo_url) }}">
+    @else
+    <p style="margin-top: 10px;">Tidak ada bukti foto</p>
+    @endif
     <footer>
         <p style="margin-top: 1rem">Dicetak pada {{ $date }}</p>
     </footer>

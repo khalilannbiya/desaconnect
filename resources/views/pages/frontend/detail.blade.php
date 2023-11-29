@@ -33,7 +33,7 @@
 
 {{-- Photo Evidence --}}
 <section class="bg-white lg:px-24 2xl:px-48">
-    <img class="object-cover object-center w-full aspect-video"
+    <img onclick="openModalPreview()" class="object-cover object-center w-full aspect-video"
         src="{{ $complaint->photo_url ? Storage::url($complaint->photo_url) : 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==' }}"
         alt="Bukti Foto">
 </section>
@@ -125,4 +125,7 @@
     </div>
     @endauth
 </section>
+
+@include('components.preview-image.preview-image')
+
 @endsection
