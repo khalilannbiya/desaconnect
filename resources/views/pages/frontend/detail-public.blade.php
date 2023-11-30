@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title')
-<title>Detail Aduan | LaporDesa</title>
+<title>Detail Aduan | DesaConnect</title>
 @endsection
 
 @section('content')
