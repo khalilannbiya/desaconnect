@@ -51,10 +51,11 @@ Configure the .env file
   APP_DEBUG=true // for development. change to false if you want publish the project
   APP_URL=http://desaconnect.test // for development, Adjust according to your URL when it's already hosted
 
+  // Set up the environment below, adjust it to the database configuration when hosting
   DB_CONNECTION=mysql
   DB_HOST=127.0.0.1
   DB_PORT=3306
-  DB_DATABASE=lapordesa
+  DB_DATABASE=desaconnect
   DB_USERNAME=root
   DB_PASSWORD=
 ```
