@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\Category;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;

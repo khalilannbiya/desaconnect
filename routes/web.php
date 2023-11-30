@@ -44,11 +44,15 @@ Route::middleware([
     Route::middleware([
         'role:complainant'
     ])->name('complainant.')->group(function () {
-        Route::resource('complaints', ComplaintController::class);
+        Route::resource('complaints', ComplaintController::class)->only([
+            'index', 'create', 'store', 'show', 'destroy'
+        ]);
         Route::get('/complaints/{complaint}', [ComplaintController::class, 'show'])->name('complaints.show')->middleware('checkAccessComplaint');
         Route::get('/complaints/{complaint}/generate-pdf', [ComplaintController::class, 'generatePDFDetail'])->name('complaints.generate-pdf-detail');
 
-        Route::resource("documents", DocumentController::class);
+        Route::resource("documents", DocumentController::class)->only([
+            'index', 'create', 'store', 'show', 'update', 'destroy'
+        ]);
         Route::get('/documents/{document}/download', [DocumentController::class, 'generatePDFDetail'])->name('documents.generate-pdf-detail');
     });
 
