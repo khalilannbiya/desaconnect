@@ -30,7 +30,7 @@
                         class="my-4 text-black transition-all duration-500 lg:my-0 md:text-lg lg:text-sm hover:text-vermillion">Sejarah
                         Desa</a>
                     <a href="{{ route('government') }}"
-                        class="text-black transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Pemerintahan</a>
+                        class="mb-4 text-black transition-all duration-500 lg:mb-0 md:text-lg lg:text-sm hover:text-vermillion">Pemerintahan</a>
                     <a href="{{ route('data-penduduk') }}"
                         class="text-black transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Data
                         Penduduk</a>
@@ -72,7 +72,7 @@
                         class="my-4 text-black transition-all duration-500 lg:my-0 md:text-lg lg:text-sm hover:text-vermillion">Sejarah
                         Desa</a>
                     <a href="{{ route('government') }}"
-                        class="text-black transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Pemerintahan</a>
+                        class="mb-4 text-black transition-all duration-500 lg:mb-0 md:text-lg lg:text-sm hover:text-vermillion">Pemerintahan</a>
                     <a href="{{ route('data-penduduk') }}"
                         class="text-black transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Data
                         Penduduk</a>
