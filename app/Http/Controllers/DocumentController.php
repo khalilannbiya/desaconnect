@@ -6,10 +6,10 @@ use Carbon\Carbon;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use App\Models\DocumentRequirement;
 use App\Http\Requests\DocumentRequest;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Models\Complaint; // TODO: delete after index view has finish
 
 class DocumentController extends Controller
 {
@@ -43,34 +43,44 @@ class DocumentController extends Controller
      */
     public function store(DocumentRequest $request)
     {
-        $time = time();
-        $generateRequestNumber = date("Ymd", $time) . $time;
-        $document =  Document::create([
-            "user_id" =>  auth()->user()->id,
-            "request_number" => $generateRequestNumber,
-            "document_type" => $request->document_type,
-            "status" => "proses validasi",
-        ]);
+        try {
+            DB::beginTransaction(); // Start transaction for performance improvement
 
-        $id = $document->id;
+            $time = time();
+            $generateRequestNumber = date("Ymd", $time) . $time;
 
-        $files = $request->file('document_requirements');
-        $names = $request->input('names');
-        if ($request->hasFile('document_requirements')) {
-            foreach (array_combine($names, $files) as $name => $file) {
-                $photo = $file->storePublicly("photos", "public");
+            $document =  Document::create([
+                "user_id" =>  auth()->user()->id,
+                "request_number" => $generateRequestNumber,
+                "document_type" => $request->document_type,
+                "status" => "proses validasi",
+            ]);
 
-                DocumentRequirement::create([
-                    "document_id" => $id,
-                    "name" => $name,
-                    "url" => $photo
-                ]);
+            $files = $request->file('document_requirements');
+            $names = $request->input('names');
+
+            if ($request->hasFile('document_requirements')) {
+                foreach (array_combine($names, $files) as $name => $file) {
+                    $photo = $file->storePublicly("photos", "public");
+
+                    DocumentRequirement::create([
+                        "document_id" => $document->id,
+                        "name" => $name,
+                        "url" => $photo
+                    ]);
+                }
             }
+
+            DB::commit(); // Commit changes if no errors occur
+
+            Alert::toast("<strong>Data Berhasil Dikirim!</strong>", 'success')->toHtml()->timerProgressBar();
+            return redirect()->route('complainant.documents.index');
+        } catch (\Exception $e) {
+            DB::rollback(); // Rollback changes if any error occurs
+
+            Alert::toast("Gagal mengirim data: " . $e->getMessage(), 'error')->toHtml()->timerProgressBar();
+            return redirect()->route('complainant.documents.index');
         }
-
-        Alert::toast("<strong>Data Berhasil Dikirim!</strong>", 'success')->toHtml()->timerProgressBar();
-
-        return redirect()->route('complainant.documents.index');
     }
 
     /**
@@ -105,25 +115,36 @@ class DocumentController extends Controller
      */
     public function update(Request $request, Document $document)
     {
-        $files = $request->file('document_requirements');
-        $names = $request->input('names');
-        if ($request->hasFile('document_requirements')) {
-            foreach (array_combine($names, $files) as $name => $file) {
-                $photo = $file->storePublicly("photos", "public");
+        try {
+            DB::beginTransaction();
 
-                DocumentRequirement::where('document_id', $document->id)->where('name', $name)->update([
-                    "url" => $photo
-                ]);
+            $files = $request->file('document_requirements');
+            $names = $request->input('names');
+
+            if ($request->hasFile('document_requirements')) {
+                foreach (array_combine($names, $files) as $name => $file) {
+                    $photo = $file->storePublicly("photos", "public");
+
+                    DocumentRequirement::where('document_id', $document->id)->where('name', $name)->update([
+                        "url" => $photo
+                    ]);
+                }
             }
+
+            $document->update([
+                "status" => "proses validasi"
+            ]);
+
+            DB::commit();
+
+            Alert::toast("<strong>Data Berhasil Diubah!</strong>", 'success')->toHtml()->timerProgressBar();
+            return redirect()->route('complainant.documents.index');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            Alert::toast("Gagal mengubah data: " . $e->getMessage(), 'error')->toHtml()->timerProgressBar();
+            return redirect()->route('complainant.documents.index');
         }
-
-        $document->update([
-            "status" => "proses validasi"
-        ]);
-
-        Alert::toast("<strong>Data Berhasil Diubah!</strong>", 'success')->toHtml()->timerProgressBar();
-
-        return redirect()->route('complainant.documents.index');
     }
 
     /**
@@ -131,10 +152,21 @@ class DocumentController extends Controller
      */
     public function destroy(Document $document)
     {
-        $document->delete();
+        try {
+            DB::beginTransaction(); // Start transaction for performance improvement
 
-        Alert::toast("<strong>Data Berhasil Dihapus!</strong>", 'success')->toHtml()->timerProgressBar();
-        return redirect()->back();
+            $document->delete();
+
+            DB::commit(); // Commit changes if no errors occur
+
+            Alert::toast("<strong>Data Berhasil Dihapus!</strong>", 'success')->toHtml()->timerProgressBar();
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback(); // Rollback changes if any error occurs
+
+            Alert::toast("Gagal menghapus data: " . $e->getMessage(), 'error')->toHtml()->timerProgressBar();
+            return redirect()->back();
+        }
     }
 
     public function updateResponse(Request $request, Document $document)

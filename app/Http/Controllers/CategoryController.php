@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
@@ -15,8 +16,8 @@ class CategoryController extends Controller
     {
         $categories = Category::latest();
 
-        if ($request->has(['keyword'])) {
-            $categories = $categories->where('category', 'like', '%' . $request->keyword . '%');
+        if ($request->has('keyword')) {
+            $categories->where('category', 'like', '%' . $request->keyword . '%');
         }
 
         $categories = $categories->paginate(10);
@@ -36,20 +37,31 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'category' => 'required|string|max:20|unique:categories',
-        ], [
-            'category.required' => 'Isikan Category terlebih dahulu!',
-            'category.max' => 'Kalimat kategori terlalu panjang!',
-            'category.unique' => 'Kategori sudah ada sebelumnya!'
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'category' => 'required|string|max:20|unique:categories',
+            ], [
+                'category.required' => 'Isikan Category terlebih dahulu!',
+                'category.max' => 'Kalimat kategori terlalu panjang!',
+                'category.unique' => 'Kategori sudah ada sebelumnya!',
+            ]);
 
-        $data = $request->all();
+            DB::beginTransaction(); // Start transaction for performance improvement
 
-        Category::create($data);
+            Category::create($validatedData);
 
-        Alert::toast("<strong>Anda berhasil menambahkan Kategori!</strong>", 'success')->toHtml()->timerProgressBar();
-        return redirect()->back();
+            DB::commit(); // Commit changes if no errors occur
+
+
+            Alert::toast("<strong>Anda berhasil menambahkan Kategori!</strong>", 'success')->toHtml()->timerProgressBar();
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback(); // Rollback changes if any error occurs
+
+            // Display an error message to the user
+            Alert::toast("Gagal menambahkan kategori: " . $e->getMessage(), 'error')->toHtml()->timerProgressBar();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -81,9 +93,20 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
+        try {
+            DB::beginTransaction(); // Start transaction for performance improvement
 
-        Alert::toast("<strong>Data Berhasil Dihapus!</strong>", 'success')->toHtml()->timerProgressBar();
-        return redirect()->back();
+            $category->delete();
+
+            DB::commit(); // Commit changes if no errors occur
+
+            Alert::toast("<strong>Data Berhasil Dihapus!</strong>", 'success')->toHtml()->timerProgressBar();
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback(); // Rollback changes if any error occurs
+
+            Alert::toast("Gagal menghapus data: " . $e->getMessage(), 'error')->toHtml()->timerProgressBar();
+            return redirect()->back();
+        }
     }
 }
