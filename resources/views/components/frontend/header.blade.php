@@ -21,7 +21,7 @@
             <li class="flex flex-col lg:block">
                 <button type="button" id="dropdownBtnProfile"
                     class="flex flex-row justify-center text-black transition-all duration-500 lg:items-center md:text-lg lg:text-sm hover:text-vermillion {{ in_array(Route::current()->getName(), ['profile', 'government', 'data-penduduk']) ? 'text-vermillion' : '' }}">Profile
-                    <img id="caret-dropdown-profile" class="-rotate-90 lg:w-5"
+                    <img id="caret-dropdown-profile" class="-rotate-90 lg:w-5 transition-all duration-500"
                         src="{{ asset('assets/icons/caret-down.svg') }}"></button>
 
                 <div class="flex-col items-center lg:gap-3 lg:items-start hidden lg:absolute lg:bg-[#E8C6B6] lg:rounded-md lg:px-3 lg:py-3"
@@ -63,7 +63,7 @@
             <li class="flex flex-col lg:block">
                 <button type="button" id="dropdownBtnProfile"
                     class="flex flex-row justify-center text-black transition-all duration-500 lg:items-center md:text-lg lg:text-sm hover:text-vermillion {{ in_array(Route::current()->getName(), ['profile', 'government', 'data-penduduk']) ? 'text-vermillion' : '' }}">Profile
-                    <img id="caret-dropdown-profile" class="-rotate-90 lg:w-5"
+                    <img id="caret-dropdown-profile" class="-rotate-90 lg:w-5 transition-all duration-500"
                         src="{{ asset('assets/icons/caret-down.svg') }}"></button>
 
                 <div class="flex-col items-center lg:gap-3 lg:items-start hidden lg:absolute lg:bg-[#E8C6B6] lg:rounded-md lg:px-3 lg:py-3"
@@ -82,7 +82,7 @@
             <li class="flex flex-col lg:block">
                 <button type="button" id="dropdownBtnLayanan"
                     class="flex flex-row justify-center text-black transition-all duration-500 lg:items-center md:text-lg lg:text-sm hover:text-vermillion {{ in_array(Route::current()->getName(), ['complainant.complaints.create', 'complainant.documents.create' ]) ? 'text-vermillion' : '' }}">Layanan
-                    <img id="caret-dropdown" class="-rotate-90 lg:w-5"
+                    <img id="caret-dropdown" class="-rotate-90 lg:w-5 transition-all duration-500"
                         src="{{ asset('assets/icons/caret-down.svg') }}"></button>
 
                 <div class="flex-col items-center lg:gap-3 lg:items-start hidden lg:absolute lg:bg-[#E8C6B6] lg:rounded-md lg:px-3 lg:py-3"
@@ -99,7 +99,7 @@
             <li class="flex flex-col lg:block">
                 <button type="button" id="dropdownBtnRiwayat"
                     class="flex flex-row justify-center text-black transition-all duration-500 lg:items-center md:text-lg lg:text-sm hover:text-vermillion {{ in_array(Route::current()->getName(), ['complainant.complaints.index', 'complainant.documents.index' ]) ? 'text-vermillion' : '' }}">Riwayat
-                    <img id="caret-dropdown-riwayat" class="-rotate-90 lg:w-5"
+                    <img id="caret-dropdown-riwayat" class="-rotate-90 lg:w-5 transition-all duration-500"
                         src="{{ asset('assets/icons/caret-down.svg') }}"></button>
 
                 <div class="flex-col items-center lg:gap-3 lg:items-start hidden lg:absolute lg:bg-[#E8C6B6] lg:rounded-md lg:px-3 lg:py-3"
