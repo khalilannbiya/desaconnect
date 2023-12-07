@@ -20,19 +20,24 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', [FrontendController::class, 'index'])->name('index');
-Route::get('/profile', function () {
-    return view('pages.frontend.profile');
-})->name('profile');
-Route::get('/government', function () {
-    return view('pages.frontend.government');
-})->name('government');
-Route::get('/data-penduduk', function () {
-    return view('pages.frontend.penduduk');
-})->name('data-penduduk');
-Route::get('/complaints/track', [FrontendController::class, 'tracking'])->name('complaints.track');
-Route::get('/complaints/public', [FrontendController::class, 'publicComplaints'])->name('complaints.public');
-Route::get('/complaints/{complaint}/public', [FrontendController::class, 'show'])->name('complaints.show.public');
+Route::prefix('/')->group(function () {
+    Route::get('/', [FrontendController::class, 'index'])->name('index');
+    Route::get('/profile', function () {
+        return view('pages.frontend.profile');
+    })->name('profile');
+    Route::get('/government', function () {
+        return view('pages.frontend.government');
+    })->name('government');
+    Route::get('/data-penduduk', function () {
+        return view('pages.frontend.penduduk');
+    })->name('data-penduduk');
+});
+
+Route::prefix('/complaints')->group(function () {
+    Route::get('/track', [FrontendController::class, 'tracking'])->name('complaints.track');
+    Route::get('/public', [FrontendController::class, 'publicComplaints'])->name('complaints.public');
+    Route::get('/{complaint}/public', [FrontendController::class, 'show'])->name('complaints.show.public');
+});
 
 Route::middleware([
     'auth:sanctum',
@@ -63,22 +68,25 @@ Route::middleware([
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
         Route::get('/complaints', [AdminController::class, 'index'])->name('complaints.index');
-        Route::get('/complaints/{complaint}', [ComplaintController::class, 'show'])->name('complaints.show');
         Route::put('/complaints/{complaint}/response', [ComplaintController::class, 'updateResponse'])->name('complaints.update-response');
         Route::put('/complaints/{complaint}/status', [ComplaintController::class, 'updateStatus'])->name('complaints.update-status');
-        Route::delete('/complaints/{complaint}', [ComplaintController::class, 'destroy'])->name('complaints.destroy');
         Route::get('/complaints/{complaint}/generate-pdf', [ComplaintController::class, 'generatePDFDetail'])->name('complaints.generate-pdf-detail');
         Route::get('/report/generate-pdf', [ComplaintController::class, 'generatePDFAll'])->name('complaints.generate-pdf-all');
+        Route::resource("complaints", ComplaintController::class)->only([
+            'show', 'destroy'
+        ]);
 
         Route::get('/documents', [AdminController::class, 'indexDocuments'])->name('documents.index');
-        Route::get('/documents/{document}', [DocumentController::class, 'show'])->name('documents.show');
         Route::put('/documents/{document}/response', [DocumentController::class, 'updateResponse'])->name('documents.update-response');
         Route::put('/documents/{document}/status', [DocumentController::class, 'updateStatus'])->name('documents.update-status');
-        Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
         Route::get('/report/document/download', [DocumentController::class, 'generatePDFAll'])->name('documents.generate-pdf-all');
+        Route::resource("documents", DocumentController::class)->only([
+            'show', 'destroy'
+        ]);
 
-        Route::get('/users', [UserController::class, 'index'])->name('users.index');
-        Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::resource("users", UserController::class)->only([
+            'index', 'show'
+        ]);
 
         Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
     });
@@ -89,39 +97,30 @@ Route::middleware([
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
         Route::get('/complaints', [AdminController::class, 'index'])->name('complaints.index');
-        Route::get('/complaints/{complaint}', [ComplaintController::class, 'show'])->name('complaints.show');
-        Route::delete('/complaints/{complaint}', [ComplaintController::class, 'destroy'])->name('complaints.destroy');
         Route::put('/complaints/{complaint}/response', [ComplaintController::class, 'updateResponse'])->name('complaints.update-response');
         Route::put('/complaints/{complaint}/status', [ComplaintController::class, 'updateStatus'])->name('complaints.update-status');
         Route::get('/complaints/{complaint}/generate-pdf', [ComplaintController::class, 'generatePDFDetail'])->name('complaints.generate-pdf-detail');
         Route::get('/report/generate-pdf', [ComplaintController::class, 'generatePDFAll'])->name('complaints.generate-pdf-all');
+        Route::resource("complaints", ComplaintController::class)->only([
+            'show', 'destroy'
+        ]);
 
         Route::get('/documents', [AdminController::class, 'indexDocuments'])->name('documents.index');
-        Route::get('/documents/{document}', [DocumentController::class, 'show'])->name('documents.show');
         Route::put('/documents/{document}/response', [DocumentController::class, 'updateResponse'])->name('documents.update-response');
         Route::put('/documents/{document}/status', [DocumentController::class, 'updateStatus'])->name('documents.update-status');
-        Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
         Route::get('/report/document/download', [DocumentController::class, 'generatePDFAll'])->name('documents.generate-pdf-all');
+        Route::resource("documents", DocumentController::class)->only([
+            'show', 'destroy'
+        ]);
 
-        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
         Route::get('/users/officer', [UserController::class, 'getStaffAndAdminData'])->name('users.get-officer');
-        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-        Route::post('/users', [UserController::class, 'store'])->name('users.store');
-        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-        Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::resource("users", UserController::class)->only([
+            'index', 'create', 'store', 'show', 'destroy'
+        ]);
 
-        Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-        Route::post('/categories}', [CategoryController::class, 'store'])->name('categories.store');
-        Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+        Route::resource("categories", CategoryController::class)->only([
+            'index', 'store', 'destroy'
+        ]);
     });
-});
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 });
