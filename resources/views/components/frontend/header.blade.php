@@ -5,7 +5,7 @@
         <div>
             <a href="{{ route('index') }}#up">
                 <img class="w-[2rem] md:w-14 lg:w-14" src="{{ asset('assets/images/logo.png') }}"
-                    alt="Logo DesaConnect" />
+                    alt="Logo Desa Puseurjaya" />
             </a>
         </div>
         <ul id="navList"
