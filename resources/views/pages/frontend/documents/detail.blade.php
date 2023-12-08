@@ -2,10 +2,10 @@
 
 @section('title')
 @guest
-<title>DesaConnect</title>
+<title>Desa Puseurjaya</title>
 @endguest
 @auth
-<title>Detail Pengajuan | DesaConnect</title>
+<title>Detail Pengajuan | Desa Puseurjaya</title>
 @endauth
 @endsection
 

@@ -51,5 +51,5 @@
     </section>
     <h6 class="mt-6 text-xs md:text-sm lg:text-sm text-medium md:mt-8 md:text-center text-davys-grey">©2023. All
         Rights
-        Reserved. <span class="text-vermillion">DesaConnect</span></h6>
+        Reserved. <span class="text-vermillion">Desa Puseurjaya</span></h6>
 </footer>
