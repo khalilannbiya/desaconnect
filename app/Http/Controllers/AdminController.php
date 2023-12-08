@@ -51,6 +51,7 @@ class AdminController extends Controller
         if ($request->has(['keyword'])) {
             $documents = $documents->where('status', 'like', '%' . $request->keyword . '%')
                 ->orWhere('document_type', 'like', '%' . $request->keyword . '%')
+                ->orWhere('request_number', 'like', '%' . $request->keyword . '%')
                 ->orWhereHas('user', function ($userQuery) use ($request) {
                     $userQuery->where('name', 'like', '%' . $request->keyword . '%');
                 });
