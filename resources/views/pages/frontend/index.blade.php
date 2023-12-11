@@ -25,7 +25,7 @@
     <div class="flex flex-wrap-reverse justify-center gap-4 font-semibold md:gap-7 lg:gap-6">
 
         @guest
-        <a href="{{ route('login') }}"
+        <a href="{{ route('complainant.documents.create') }}"
             class="px-5 py-2 border-2 border-black rounded-md md:px-10 md:py-3 lg:text-lg active:border-vermillion active:shadow-xl active:text-vermillion md:text-xl lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Pengajuan
             Surat</a>
         @endguest
@@ -37,7 +37,7 @@
             Surat</a>
         @endif
         @endauth
-        <a href="{{ auth()->user() ? route('complainant.complaints.create') : route('login') }}"
+        <a href="{{ route('complainant.complaints.create') }}"
             class="px-5 py-2 text-white bg-black border-2 border-black rounded-md md:px-10 md:py-3 lg:text-lg active:border-vermillion active:bg-vermillion active:shadow-xl md:text-xl lg:hover:bg-vermillion lg:hover:border-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Laporkan!</a>
     </div>
     <img class="absolute w-1/4 md:w-44 xl:w-[10rem] right-[-8%] md:-right-12 bottom-[7%] -z-10"
