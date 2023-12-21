@@ -9,12 +9,12 @@
         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0  transform translate-y-1/2" @click.away="closeModalStatus"
         @keydown.escape="closeModalStatus"
-        class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
-        role="dialog" id="modalStatus">
+        class="w-full px-6 py-4 overflow-hidden bg-gray-800 rounded-t-lg sm:rounded-lg sm:m-4 sm:max-w-xl" role="dialog"
+        id="modalStatus">
         <!-- Remove header if you don't want a close icon. Use modal body to place modal tile. -->
         <header class="flex justify-end">
             <button
-                class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
+                class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded hover:text-gray-700"
                 aria-label="close" @click="closeModalStatus">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
                     <path
@@ -31,13 +31,13 @@
             @method('PUT')
             <div class="mt-4 mb-6">
                 <!-- Modal title -->
-                <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
+                <p class="mb-2 text-lg font-semibold text-gray-300">
                     Ubah Status
                 </p>
                 <!-- Modal description -->
                 <label class="block mt-4 text-sm">
                     <select id="status" name="status" required
-                        class="block w-full mt-1 text-sm capitalize dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        class="block w-full mt-1 text-sm text-gray-300 capitalize bg-gray-700 border-gray-600 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray">
                         @foreach ($status as $item)
                         @if ($item === $document->status)
                         <option class="capitalize" value="{{ $item }}" selected>{{ $item }}
@@ -49,16 +49,16 @@
                         @endforeach
                     </select>
                     @error('status')
-                    <span class="text-xs text-red-600 dark:text-red-400">
+                    <span class="text-xs text-red-400">
                         {{ $message }}
                     </span>
                     @enderror
                 </label>
             </div>
             <footer
-                class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
+                class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 bg-gray-800 sm:space-y-0 sm:space-x-6 sm:flex-row">
                 <button @click="closeModalStatus" type="button"
-                    class="w-full px-5 py-3 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+                    class="w-full px-5 py-3 text-sm font-medium leading-5 text-gray-400 transition-colors duration-150 border border-gray-300 rounded-lg sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
                     Cancel
                 </button>
                 <button type="submit"
