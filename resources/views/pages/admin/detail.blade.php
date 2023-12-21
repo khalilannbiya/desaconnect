@@ -5,7 +5,7 @@
 @endsection
 
 @section('title-page')
-<h2 class="my-6 text-lg font-semibold text-gray-700 dark:text-gray-200">
+<h2 class="my-6 text-lg font-semibold text-gray-200">
     <a href="{{ auth()->user()->role_id === 2 ? route('staff.complaints.index') : route('admin.complaints.index') }}"
         class="hover:text-gray-600">Detail Aduan</a> > {{ $complaint->title
     }}
@@ -23,79 +23,79 @@
 </div>
 @endif
 
-<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+<div class="px-4 py-3 mb-8 rounded-lg shadow-md bg-gray-800">
     <label class="block text-sm">
-        <span class="text-gray-700 dark:text-gray-400">Name</span>
+        <span class="text-gray-400">Name</span>
         <a href="{{ auth()->user()->role_id === 2 ? route('staff.users.show', $complaint->user_id) : route('admin.users.show', $complaint->user_id) }}"
-            class="block w-full mt-1 text-sm underline dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input">{{
+            class="block w-full mt-1 text-sm underline border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray form-input">{{
             $complaint->user->name }}</a>
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Email</span>
+        <span class="text-gray-400">Email</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray form-input"
             value="{{ $complaint->user->email }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">NIK</span>
+        <span class="text-gray-400">NIK</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray form-input"
             value="{{ $complaint->user->nik }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Alamat</span>
+        <span class="text-gray-400">Alamat</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray form-input"
             value="{{ $complaint->user->address }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Nomer Telepon</span>
+        <span class="text-gray-400">Nomer Telepon</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray form-input"
             value="{{ $complaint->user->phone }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Judul Aduan</span>
+        <span class="text-gray-400">Judul Aduan</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray form-input"
             value="{{ $complaint->title }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Status Aduan</span>
+        <span class="text-gray-400">Status Aduan</span>
         @if ($complaint->status === 'belum diproses')
         <input
-            class="block w-full mt-1 text-sm font-semibold text-red-500 capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm font-semibold text-red-500 capitalize border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $complaint->status }}" disabled />
         @elseif ($complaint->status === 'sedang diproses')
         <input
-            class="block w-full mt-1 text-sm font-semibold text-yellow-500 capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm font-semibold text-yellow-500 capitalize border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $complaint->status }}" disabled />
         @else
         <input
-            class="block w-full mt-1 text-sm font-semibold text-green-500 capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm font-semibold text-green-500 capitalize border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $complaint->status }}" disabled />
 
         @endif
 
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Kategori Aduan</span>
+        <span class="text-gray-400">Kategori Aduan</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray form-input"
             value="{{ $complaint->category->category }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Dikirim Pada</span>
+        <span class="text-gray-400">Dikirim Pada</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray form-input"
             value="{{ $complaint->created_at->format('H:i, d-m-Y') }}" disabled />
     </label>
 </div>
-<h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+<h4 class="mb-4 text-lg font-semibold text-gray-300">
     Bukti Foto
 </h4>
-<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+<div class="px-4 py-3 mb-8 rounded-lg shadow-md bg-gray-800">
+    <div class="min-w-0 p-4 rounded-lg shadow-xs bg-gray-800">
         @if ($complaint->photo_url)
         <img onclick="openModalPreview()" class="w-48" src="{{ Storage::url($complaint->photo_url) }}" alt="Bukti Foto">
         @else
@@ -103,21 +103,21 @@
         @endif
     </div>
 </div>
-<h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+<h4 class="mb-4 text-lg font-semibold text-gray-300">
     Isi Pengaduan
 </h4>
-<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+<div class="px-4 py-3 mb-8 rounded-lg shadow-md bg-gray-800">
+    <div class="min-w-0 p-4 rounded-lg shadow-xs bg-gray-800">
         <p class="text-white">
             {{ $complaint->body }}
         </p>
     </div>
 </div>
-<h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+<h4 class="mb-4 text-lg font-semibold text-gray-300">
     Respon Aparat
 </h4>
-<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+<div class="px-4 py-3 mb-8 rounded-lg shadow-md bg-gray-800">
+    <div class="min-w-0 p-4 rounded-lg shadow-xs bg-gray-800">
         <p class="text-white">
             {{ $complaint->response ? $complaint->response : 'Belum ada response' }}
         </p>

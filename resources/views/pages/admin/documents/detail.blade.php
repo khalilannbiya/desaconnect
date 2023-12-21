@@ -5,7 +5,7 @@
 @endsection
 
 @section('title-page')
-<h2 class="my-6 text-lg font-semibold text-gray-700 dark:text-gray-200">
+<h2 class="my-6 text-lg font-semibold text-gray-200">
     <a href="{{ auth()->user()->role_id === 2 ? route('staff.documents.index') : route('admin.documents.index') }}"
         class="hover:text-gray-600">Detail Pengajuan Surat</a> > {{ $document->request_number
     }}
@@ -23,96 +23,96 @@
 </div>
 @endif
 
-<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+<div class="px-4 py-3 mb-8 bg-gray-800 rounded-lg shadow-md">
     <label class="block text-sm">
-        <span class="text-gray-700 dark:text-gray-400">Nama Pengaju</span>
+        <span class="text-gray-400 ">Nama Pengaju</span>
         <a href="{{ auth()->user()->role_id === 2 ? route('staff.users.show', $document->user_id) : route('admin.users.show', $document->user_id) }}"
-            class="block w-full mt-1 text-sm underline dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input">{{
+            class="block w-full mt-1 text-sm text-gray-300 underline bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input">{{
             $document->user->name }}</a>
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Email</span>
+        <span class="text-gray-400">Email</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm text-gray-300 bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->user->email }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">NIK</span>
+        <span class="text-gray-400">NIK</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm text-gray-300 bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->user->nik }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Alamat</span>
+        <span class="text-gray-400">Alamat</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm text-gray-300 bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->user->address }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Nomer Telepon</span>
+        <span class="text-gray-400">Nomer Telepon</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm text-gray-300 bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->user->phone }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Nomor Pengajuan</span>
+        <span class="text-gray-400">Nomor Pengajuan</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm text-gray-300 bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->request_number }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Jenis Surat</span>
+        <span class="text-gray-400">Jenis Surat</span>
         <input
-            class="block w-full mt-1 text-sm capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm text-gray-300 capitalize bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->document_type }}" disabled />
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Status Pengajuan</span>
+        <span class="text-gray-400">Status Pengajuan</span>
         @if ($document->status === 'tidak valid')
         <input
-            class="block w-full mt-1 text-sm font-semibold text-red-500 capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm font-semibold text-red-500 capitalize bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->status }}" disabled />
         @elseif ($document->status === 'proses validasi')
         <input
-            class="block w-full mt-1 text-sm font-semibold text-yellow-500 capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm font-semibold text-yellow-500 capitalize bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->status }}" disabled />
         @elseif ($document->status === 'diproses')
         <input
-            class="block w-full mt-1 text-sm font-semibold text-yellow-500 capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm font-semibold text-yellow-500 capitalize bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->status }}" disabled />
         @elseif ($document->status === 'siap diambil')
         <input
-            class="block w-full mt-1 text-sm font-semibold text-green-500 capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm font-semibold text-green-500 capitalize bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->status }}" disabled />
         @else
         <input
-            class="block w-full mt-1 text-sm font-semibold text-green-500 capitalize dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm font-semibold text-green-500 capitalize bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->status }}" disabled />
         @endif
     </label>
     <label class="block mt-4 text-sm ">
-        <span class="text-gray-700 dark:text-gray-400">Diajukan Pada</span>
+        <span class="text-gray-400">Diajukan Pada</span>
         <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm text-gray-300 bg-gray-700 border-gray-600 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
             value="{{ $document->created_at->format('H:i, d-m-Y') }}" disabled />
     </label>
 </div>
 @foreach ($document->documentRequirement as $item)
-<h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+<h4 class="mb-4 text-lg font-semibold text-gray-300">
     {{ $item->name }}
 </h4>
-<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+<div class="px-4 py-3 mb-8 bg-gray-800 rounded-lg shadow-md">
+    <div class="min-w-0 p-4 bg-gray-800 rounded-lg shadow-xs">
         <img onclick="openModalPreview()" class="w-48" src="{{ Storage::url($item->url) }}"
             alt="Peryaratan {{ $item->name }}">
     </div>
 </div>
 @endforeach
-<h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+<h4 class="mb-4 text-lg font-semibold text-gray-300">
     Perhatian <span class="inline-block w-3 h-3 bg-red-800 rounded-full blinking-text"></span>
 </h4>
-<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+<div class="px-4 py-3 mb-8 bg-gray-800 rounded-lg shadow-md">
+    <div class="min-w-0 p-4 bg-gray-800 rounded-lg shadow-xs">
         <p class="text-sm text-white md:leading-6 lg:leading-7 lg:text-base">
             Berikan pesan kesalahan ketika ada persyaratan yang tidak lengkap atau tidak valid. Jelaskan mengapa
             kondisi-kondisi tersebut tidak valid dan beri petunjuk untuk melakukan pembaruan
@@ -120,11 +120,11 @@
     </div>
 </div>
 
-<h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+<h4 class="mb-4 text-lg font-semibold text-gray-300">
     Pesan kesalahan
 </h4>
-<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+<div class="px-4 py-3 mb-8 bg-gray-800 rounded-lg shadow-md">
+    <div class="min-w-0 p-4 bg-gray-800 rounded-lg shadow-xs">
         <p class="text-white">
             {{ $document->response ? $document->response : 'Belum ada response' }}
         </p>
